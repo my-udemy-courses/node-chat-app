@@ -15,18 +15,18 @@ app.use(express.static(publicPath))
 io.on('connection', (socket) => {
     console.log('New user connected');
 
-    socket.emit('newMessage', {
-        from: 'server boss',
-        text: 'Hey boiii!',
-        createdAt: new Date()
-    });
-
     socket.on('disconnect', () => {
         console.log('User disconnected');
     });
 
     socket.on('createMessage', (message) => {
         console.log('got message:', message);
+        // io.emit is a broad cast !!!
+        io.emit('newMessage', {
+            from: message.from,
+            text: message.text,
+            createdAt: new Date().getTime()
+        });
     });
 });
 
