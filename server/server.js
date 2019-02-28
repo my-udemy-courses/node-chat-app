@@ -16,11 +16,11 @@ app.use(express.static(publicPath))
 io.on('connection', (socket) => {
     console.log('New user connected');
 
-    // socket.emit from Admin text Welcome to chat app
-    socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app!'));
+    // socket.emit from ChatBot text Welcome to chat app
+    socket.emit('newMessage', generateMessage('ChatBot', 'Welcome to the chat app!'));
 
-    // socket.broadcast.emit from Admin text new User joined
-    socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined!'));
+    // socket.broadcast.emit from ChatBot text new User joined
+    socket.broadcast.emit('newMessage', generateMessage('ChatBot', 'New user joined!'));
 
     socket.on('disconnect', () => {
         console.log('User disconnected');
@@ -33,7 +33,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('createLocationMessage', (coords, callback) => {
-        io.emit('newLocationMessage', generateLocationMessage('Admin', coords.latitude, coords.longitude));
+        io.emit('newLocationMessage', generateLocationMessage('ChatBot', coords.latitude, coords.longitude));
         callback();
     });
 });
