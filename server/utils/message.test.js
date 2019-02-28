@@ -29,5 +29,8 @@ describe('generateLocationMessage', () => {
         var message = generateLocationMessage(from, lat, lng);
 
         expect(message.url).toBe(`https://www.google.com/maps?q=${lat},${lng}`);
+        
+        // assert createdAt is number
+        expect(typeof message.createdAt).toBe('number')
     });
 });

@@ -28,13 +28,13 @@ io.on('connection', (socket) => {
 
     socket.on('createMessage', (message, callback) => {
         console.log('got message:', message);
-        // io.emit is a global cast !!!
         io.emit('newMessage', generateMessage(message.from, message.text));
         callback();
     });
 
     socket.on('createLocationMessage', (coords, callback) => {
         io.emit('newLocationMessage', generateLocationMessage('Admin', coords.latitude, coords.longitude));
+        callback();
     });
 });
 
