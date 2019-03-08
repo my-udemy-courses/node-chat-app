@@ -21,8 +21,15 @@ function scrollToBottom () {
 }
 
 socket.on('connect', function () {
-    console.log('Connected to server');
+    var params = jQuery.deparam(window.location.search);
 
+    socket.emit('join', params, function (err) {
+        if (err) {
+            window.location.href = `/?err=${err}`;
+        } else {
+            console.log('Joined group!');
+        }
+    });
 });
 
 socket.on('disconnect', function () {

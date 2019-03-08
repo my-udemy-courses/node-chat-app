@@ -4,27 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Join | Mayfly Chat App</title>
+    <title>Join | Mayfly Chat</title>
     <link rel="stylesheet" href="/css/styles.css" />
 </head>
 <body class="centered-form">
     <div class="centered-form__form">
         <form action="/chat.html">
             <div class="form-field">
-                <h3>Join Mayfly</h3>
+                <h3>Join Mayfly Chat</h3>
             </div>
             <div class="form-field">
-                <label for="">Your mayfly name</label>
+                <label for="">Choose a name</label>
                 <input type="text" name="name" autofocus />
             </div>
             <div class="form-field">
-                <label for="">Swarm name</label>
+                <label for="">Choose a group</label>
                 <input type="text" name="room" />
             </div>
+            <div class="info"></div>
             <div class="form-field">
                 <button>Join</button>
             </div>
         </form>
     </div>
+
+    
+    <script src="/js/lib/jquery-3.3.1.min.js"></script>
+    <script src="/js/lib/deparam.js"></script>
+    <script type="text/javascript">
+        var params = $.deparam(window.location.search);
+
+        if (params.err){
+            $('.info').html(params.err).fadeIn().fadeOut(3000);
+        }
+
+    </script>
 </body>
 </html>
